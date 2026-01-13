@@ -56,3 +56,15 @@ if (course?.title) {
 ```
 
 This will only evaluate to `true` when course is defined, not null, and its `title` property is set.
+
+#### Null Coalescing
+
+The `??` operator allows you to provide a default value when an evaluation returns null or undefined. It is similar to the `||` operation when setting a default on a `false` result (`var title = false || "default title";`). For example:
+
+```typescript
+let course = null;
+let title = course?.title ?? "No title given";
+
+// should print "No title given"
+console.log(title);
+```
