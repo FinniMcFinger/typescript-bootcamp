@@ -1,4 +1,4 @@
-var courseName = "Typescript Bootcamp";
+var courseName = "Finni's Typescript Bootcamp Experience";
 printCourseName(courseName);
 // printCourseName(100);
 // printCourseName([0, 1, 2]);
