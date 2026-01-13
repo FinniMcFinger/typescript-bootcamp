@@ -1,0 +1,14 @@
+{
+  "name": "ts-fundamentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-why-typescript.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

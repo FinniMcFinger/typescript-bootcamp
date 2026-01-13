@@ -1,6 +1,6 @@
 # Typescript Bootcamp Notes
 
-## 01-why-typescript.ts
+## Fundamentals
 
 - to install the Typescript compiler: `npm install -g typescript`
 - to compile the file: `tsc 01-why-typescript.ts`
@@ -19,3 +19,9 @@ If you run `tsc` with the `--noEmitOnError` flag, a compiled JS file will _not_ 
 - run the server with `npm start`
 
 `lite-server` allows hot-reload, so as soon as you change the compiled file (i.e. recompile), you will see the changes in the browser (automatic reload).
+
+### Variable Types
+
+- `const` makes a variable reference immutable (not the value).
+- `let` makes a variable reference mutable, so it can be reassigned later in the program.
+- Both `const` and `let` compile back to a `var`. Both `const` and `let` are scoped where var is not.
