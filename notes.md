@@ -2,6 +2,8 @@
 
 ## Fundamentals
 
+### tsc
+
 - to install the Typescript compiler: `npm install -g typescript`
 - to compile the file: `tsc 01-why-typescript.ts`
 - to run the file: `node 01-why-typescript.js`
@@ -25,3 +27,18 @@ If you run `tsc` with the `--noEmitOnError` flag, a compiled JS file will _not_ 
 - `const` makes a variable reference immutable (not the value).
 - `let` makes a variable reference mutable, so it can be reassigned later in the program.
 - Both `const` and `let` compile back to a `var`. Both `const` and `let` are scoped where var is not.
+
+### Template Strings
+
+Template strings can be created with backtick characters: \`. This allows for injecting variable values directly into a string instead of concatenating. This allows for more readable string constructions within code.
+
+### Type Inference
+
+The compiler can infer types for variables when they are initialized with a value. This means that for primitives, you do not need to explicity declare a type.
+
+#### When To Use Type Annotations
+
+- use type inference whenever possible
+- annotate input variables on functions
+
+Type inference is becoming more and more powerful with each version of TS that is released.
