@@ -34,3 +34,18 @@ function pluralize(factor, base) {
         return "".concat(base, "s");
     }
 }
+// objects
+var course = {
+    title: "The Title",
+    subtitle: "Some subtitle here",
+    lessonCount: 10
+};
+var courseExplicit = {
+    title: "The Title",
+    subtitle: "Some subtitle here",
+    lessonCount: 10
+};
+// these generate compiler errors
+// course = 10;
+// course.fullTitle = "";
+console.log("course type - ".concat(typeof course));

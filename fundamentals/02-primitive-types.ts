@@ -44,3 +44,24 @@ function pluralize(factor:number, base:string) {
         return `${base}s`;
     }
 }
+
+// objects
+let course = {
+    title: "The Title",
+    subtitle: "Some subtitle here",
+    lessonCount: 10
+};
+let courseExplicit: {
+    title:string,
+    subtitle:string,
+    lessonCount:number
+} = {
+    title: "The Title",
+    subtitle: "Some subtitle here",
+    lessonCount: 10
+};
+
+// these generate compiler errors
+// course = 10;
+// course.fullTitle = "";
+console.log(`course type - ${typeof course}`);
