@@ -26,6 +26,7 @@ if (published) {
 const fullTitle = `Full Title - ${title}: ${subtitle}`;
 
 console.log(fullTitle);
+console.log(typeof fullTitle);
 
 
 printCourse(title, subtitle, lessonCount);

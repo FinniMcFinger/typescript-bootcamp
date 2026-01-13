@@ -20,6 +20,7 @@ else {
 // template string
 var fullTitle = "Full Title - ".concat(title, ": ").concat(subtitle);
 console.log(fullTitle);
+console.log(typeof fullTitle);
 printCourse(title, subtitle, lessonCount);
 function printCourse(title, subtitle, lessonCount) {
     var fullTitle = "".concat(title, ": ").concat(subtitle);
