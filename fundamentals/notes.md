@@ -8,4 +8,6 @@
 
 Typescript is a superset of Javascript. All JS programs are valid TS programs, but not the other way around. TS adds static types to JS that enables easier refactoring, auto-complete, and compilation errors. This aids in discovering errors and bugs much earlier.
 
-Typescript compiles down to Javascript. The Typescript compiler is responsible for converting the code to valid Javascript. The TS compiler can be configured to produce a variety of Javascript flavors for different runtime environments.
+Typescript compiles down to Javascript. The Typescript compiler (`tsc`) is responsible for converting the code to valid Javascript. `tsc` can be configured to produce a variety of Javascript flavors for different runtime environments.
+
+If you run `tsc` with the `--noEmitOnError` flag, a compiled JS file will _not_ be generated if there is an error detected.
