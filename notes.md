@@ -42,3 +42,17 @@ The compiler can infer types for variables when they are initialized with a valu
 - annotate input variables on functions
 
 Type inference is becoming more and more powerful with each version of TS that is released.
+
+### Optional Chaining
+
+Typescript allows for easier null/undefined safety checks with optional chaining via the `?` operator. For example:
+
+```typescript
+let course = null;
+
+if (course?.title) {
+    console.log(`title: ${course.title}`);
+}
+```
+
+This will only evaluate to `true` when course is defined, not null, and its `title` property is set.
