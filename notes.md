@@ -130,3 +130,9 @@ Interfaces are the proper way to declare custom types. All functionality of an i
 
 - `?` marks a property as optional
 - `readonly` keyword makes a property final
+
+### Type Assertions
+
+There are times where you may know about the type of a variable than the compiler, i.e. that an element is an HTML input element instead of a more generic HTML element type. The type inferred by the compiler can be forced with the `as` keyword. This emulates polymorphism from an object-oriented language. This is an alternative to casting which can be done with `<CastedType>` before the value declaration.
+
+You cannot set it to a totally different type. Typically you can only assign it to a more-strict type, though sometimes you know that the assertion can work. See the [demo file](./fundamentals/11-type-assertions.ts) for an example of this.
