@@ -91,3 +91,20 @@ For better debugging and readability, string values can be passed to override th
 Any type that the compiler cannot infer will be assigned to the `any` type. This means that anything can be assigned to a variable of `any` type. This effectively bypasses all type-safety. You shouldn't explicitly use `any` type on declarations, and it should only be used as a last resort.
 
 The compiler will sometimes assign `any` to a variable implicitly. This is commonly done on function arguments that aren't explicitly typed. This functionality (implicit any) can be disabled via the `--noImplicitAny` compiler flag.
+
+### Union Types
+
+Union types allow you to assign multiple types to a variable, allowing that variable to accept multiple variable types, i.e. `string` and `number`. This is done with the `|` character in the type declaration. See the [demo file](./fundamentals/07-union-types.ts).
+
+Union types allow for a lot of flexibility, but it is also easily misused.
+
+#### Non-null Assertion Operator
+
+Since we can set a type to be `null` (either alone of via union types), we can lose some null-safety. The `--strictNullChecks` flag can be passed to the compiler to enforce null safety.
+
+Alternatively, you may know that the value of a variable is not null, so you can override even the strict check by suffixing the variable name with `!` when invoking it. This should be used sparingly. If for some reason the variable is actually null, it will still throw an error at runtime.
+
+```typescript
+let someVar: number | null = null;
+console.log(someVar!.toString());
+```
