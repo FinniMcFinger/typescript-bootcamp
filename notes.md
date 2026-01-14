@@ -4,6 +4,8 @@
 
 Typescript is a superset of Javascript. All JS programs are valid TS programs, but not the other way around. TS adds static types to JS that enables easier refactoring, auto-complete, and compilation errors. This aids in discovering errors and bugs much earlier.
 
+- custom types should use TitleCase
+
 ### tsc
 
 - to install the Typescript compiler: `npm install -g typescript`
@@ -68,3 +70,18 @@ let title = course?.title ?? "No title given";
 // should print "No title given"
 console.log(title);
 ```
+
+### Enumerations
+
+Enumerations can be declared with the `enum` keyword. When compiled, the values are translated to numbers. Numeric values can be assigned to each enum entry to override the default number assigned to it when compiled. The numbers assigned to the enum values start at `0` and increment for each successive value. If the number value is overwritten, the values will increment _after and from_ the overridden value. For example:
+
+```typescript
+enum CourseType {
+    FREE, // 0
+    PREMIUM = 10, // 10
+    PRIVATE, // 11
+    HIDDEN // 12
+};
+```
+
+For better debugging and readability, string values can be passed to override the runtime values of the enum. See the [demo file](./fundamentals/05-enums.ts) for this in action.
