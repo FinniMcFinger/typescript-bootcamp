@@ -119,3 +119,7 @@ const count = 10;
 ```
 
 When combined with union types, you can limit assignments on variables. See the [demo file](./fundamentals/08-literal-types.ts).
+
+### Alias Type
+
+Alias types allow you to declare types inline. This is particularly useful for union type declarations that need to be implemented more than once. This can be done for object declarations as well, but type interfaces are better used for this.
