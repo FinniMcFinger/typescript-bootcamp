@@ -169,7 +169,7 @@ Any argument can be assigned a default value. This makes the argument optional w
 
 ### Spread Operator
 
-The spread operator, `...` creates a _shallow_ copy of an object.
+The spread operator, `...` creates a _shallow_ copy of an object. It can also be used in function arguments that operate like Java varargs.
 
 ### Object Destructuring
 
