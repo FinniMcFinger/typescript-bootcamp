@@ -174,3 +174,11 @@ The spread operator, `...` creates a _shallow_ copy of an object. It can also be
 ### Object Destructuring
 
 Using the object notation, you can set multiple variables using the contents of another object. See the [demo file](./fundamentals/16-object-destructuring.ts).
+
+### Debugging
+
+You can debug easily in the browser via the `debugger` statement. A breakpoint will be added wherever there is a `debugger` statement. This is done with the compiled Javascript.
+
+Debugging with the Typescript requires using the `--sourceMap` flag on the compiler. This allows you to debug in the browser with the source TS files.
+
+Since any TS program can run in `node`, you can debug when you run it in node with the `--inspect` flag. Using the `--inspect-brk` flag will allow you to attach a different debugger to the process.
