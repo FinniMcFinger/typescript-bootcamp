@@ -85,3 +85,9 @@ enum CourseType {
 ```
 
 For better debugging and readability, string values can be passed to override the runtime values of the enum. See the [demo file](./fundamentals/05-enums.ts) for this in action.
+
+### `any` Type
+
+Any type that the compiler cannot infer will be assigned to the `any` type. This means that anything can be assigned to a variable of `any` type. This effectively bypasses all type-safety. You shouldn't explicitly use `any` type on declarations, and it should only be used as a last resort.
+
+The compiler will sometimes assign `any` to a variable implicitly. This is commonly done on function arguments that aren't explicitly typed. This functionality (implicit any) can be disabled via the `--noImplicitAny` compiler flag.
