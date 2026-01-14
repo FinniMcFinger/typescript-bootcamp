@@ -198,3 +198,11 @@ if (typeof unknownValue == "string") {
     let value: string = unknownValue;
 }
 ```
+
+The other way to narrow a type is via a [type predicate](./fundamentals/19-type-predicate.ts). This special syntax allows the compiler to be sure that all code within the type guard is in fact safe for the type checked. (This all seems very backwards... just use an OO language.)
+
+### Never Type
+
+You cannot assign anything to a variable of type `never`. You cannot do anything with a `never` variable either.
+
+`never` is used by the type inference system when it decides that something is not possible. This is useful for error handling both at compile time and at runtime if something truly unexpected injects a value. See the [demo file](./fundamentals/20-never-type.ts).
