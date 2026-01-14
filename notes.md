@@ -136,3 +136,23 @@ Interfaces are the proper way to declare custom types. All functionality of an i
 There are times where you may know about the type of a variable than the compiler, i.e. that an element is an HTML input element instead of a more generic HTML element type. The type inferred by the compiler can be forced with the `as` keyword. This emulates polymorphism from an object-oriented language. This is an alternative to casting which can be done with `<CastedType>` before the value declaration.
 
 You cannot set it to a totally different type. Typically you can only assign it to a more-strict type, though sometimes you know that the assertion can work. See the [demo file](./fundamentals/11-type-assertions.ts) for an example of this.
+
+### Modules
+
+#### Export and Import
+
+Each file is considered its own module/namespace. Variables/types/etc can be made available for other modules with the `export` keyword. These items then need to be imported via `import` in other modules.
+
+Imported items can even be re-exported. The names of re-exported items can be changed with the keyword `as`. A good use case for this is to create an import helper for all the features of a module.
+
+#### `index.ts`
+
+Whenever a file is named `index.ts`, anything it exports can be referred to via its directory name. I.e. if there is `./some-feature/index.ts`, then things can be import `from "./some-feature` without having to declare a specific file.
+
+#### Wildcard Import
+
+The `*` can be used to import all things from a module.
+
+#### Default Export
+
+The `default` keyword can be used to give better autocomplete hints of exports. This is best used on commonly imported parts of a module.
