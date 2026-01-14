@@ -108,3 +108,14 @@ Alternatively, you may know that the value of a variable is not null, so you can
 let someVar: number | null = null;
 console.log(someVar!.toString());
 ```
+
+### Literal Type
+
+Whenever you declare a const with a literal, the type of that variable becomes that literal. For example:
+
+```typescript
+// type 10
+const count = 10;
+```
+
+When combined with union types, you can limit assignments on variables. See the [demo file](./fundamentals/08-literal-types.ts).
