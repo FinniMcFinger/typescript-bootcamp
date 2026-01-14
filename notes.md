@@ -182,3 +182,7 @@ You can debug easily in the browser via the `debugger` statement. A breakpoint w
 Debugging with the Typescript requires using the `--sourceMap` flag on the compiler. This allows you to debug in the browser with the source TS files.
 
 Since any TS program can run in `node`, you can debug when you run it in node with the `--inspect` flag. Using the `--inspect-brk` flag will allow you to attach a different debugger to the process.
+
+### Unknown Type
+
+The `unknown` type operates much like the `any` type in that it lets you set any value to a variable of that type. The difference is that you can't set an `unknown` to another type (except `any`).
