@@ -156,3 +156,9 @@ The `*` can be used to import all things from a module.
 #### Default Export
 
 The `default` keyword can be used to give better autocomplete hints of exports. This is best used on commonly imported parts of a module.
+
+### Arrow Functions (Lambdas)
+
+Arrow functions are just shortcuts using `=>` for anonymous function calls. This is similar to lambdas in other languages. Lambdas inherit the `this` context from whatever is wrapping it. If, however, a function is fully defined anonymously via the `function` keyword, it has its own `this` context.
+
+Arrow functions are the preferred way because of the `this` inheritance.
