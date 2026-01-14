@@ -1,12 +1,10 @@
 # Typescript Bootcamp Notes
 
-## Fundamentals
-
 Typescript is a superset of Javascript. All JS programs are valid TS programs, but not the other way around. TS adds static types to JS that enables easier refactoring, auto-complete, and compilation errors. This aids in discovering errors and bugs much earlier.
 
 - custom types should use TitleCase
 
-### tsc
+## The Compiler
 
 - to install the Typescript compiler: `npm install -g typescript`
 - to compile the file: `tsc 01-why-typescript.ts`
@@ -16,7 +14,7 @@ Typescript compiles down to Javascript. The Typescript compiler (`tsc`) is respo
 
 If you run `tsc` with the `--noEmitOnError` flag, a compiled JS file will _not_ be generated if there is an error detected. The `--watch` (`-w`) flag will show the compilation steps within the console.
 
-### Running in a web browser
+## Running in a web browser
 
 - begin with `npm init` to create a `package.json` file
 - install a local server with `npm install lite-server`
@@ -24,52 +22,28 @@ If you run `tsc` with the `--noEmitOnError` flag, a compiled JS file will _not_ 
 
 `lite-server` allows hot-reload, so as soon as you change the compiled file (i.e. recompile), you will see the changes in the browser (automatic reload).
 
-### Variable Types
+## Variable Declaractions
 
 - `const` makes a variable reference immutable (not the value).
 - `let` makes a variable reference mutable, so it can be reassigned later in the program.
 - Both `const` and `let` compile back to a `var`. Both `const` and `let` are scoped where var is not.
 
-### Template Strings
+## Template Strings
 
 Template strings can be created with backtick characters: \`. This allows for injecting variable values directly into a string instead of concatenating. This allows for more readable string constructions within code.
+
+## All About Types
 
 ### Type Inference
 
 The compiler can infer types for variables when they are initialized with a value. This means that for primitives, you do not need to explicity declare a type.
 
-#### When To Use Type Annotations
+### When To Use Type Annotations
 
 - use type inference whenever possible
 - annotate input variables on functions
 
 Type inference is becoming more and more powerful with each version of TS that is released.
-
-### Optional Chaining
-
-Typescript allows for easier null/undefined safety checks with optional chaining via the `?` operator. For example:
-
-```typescript
-let course = null;
-
-if (course?.title) {
-    console.log(`title: ${course.title}`);
-}
-```
-
-This will only evaluate to `true` when course is defined, not null, and its `title` property is set.
-
-#### Null Coalescing
-
-The `??` operator allows you to provide a default value when an evaluation returns null or undefined. It is similar to the `||` operation when setting a default on a `false` result (`var title = false || "default title";`). For example:
-
-```typescript
-let course = null;
-let title = course?.title ?? "No title given";
-
-// should print "No title given"
-console.log(title);
-```
 
 ### Enumerations
 
@@ -97,17 +71,6 @@ The compiler will sometimes assign `any` to a variable implicitly. This is commo
 Union types allow you to assign multiple types to a variable, allowing that variable to accept multiple variable types, i.e. `string` and `number`. This is done with the `|` character in the type declaration. See the [demo file](./fundamentals/07-union-types.ts).
 
 Union types allow for a lot of flexibility, but it is also easily misused.
-
-#### Non-null Assertion Operator
-
-Since we can set a type to be `null` (either alone of via union types), we can lose some null-safety. The `--strictNullChecks` flag can be passed to the compiler to enforce null safety.
-
-Alternatively, you may know that the value of a variable is not null, so you can override even the strict check by suffixing the variable name with `!` when invoking it. This should be used sparingly. If for some reason the variable is actually null, it will still throw an error at runtime.
-
-```typescript
-let someVar: number | null = null;
-console.log(someVar!.toString());
-```
 
 ### Literal Type
 
@@ -137,57 +100,11 @@ There are times where you may know about the type of a variable than the compile
 
 You cannot set it to a totally different type. Typically you can only assign it to a more-strict type, though sometimes you know that the assertion can work. See the [demo file](./fundamentals/11-type-assertions.ts) for an example of this.
 
-### Modules
-
-#### Export and Import
-
-Each file is considered its own module/namespace. Variables/types/etc can be made available for other modules with the `export` keyword. These items then need to be imported via `import` in other modules.
-
-Imported items can even be re-exported. The names of re-exported items can be changed with the keyword `as`. A good use case for this is to create an import helper for all the features of a module.
-
-#### `index.ts`
-
-Whenever a file is named `index.ts`, anything it exports can be referred to via its directory name. I.e. if there is `./some-feature/index.ts`, then things can be import `from "./some-feature` without having to declare a specific file.
-
-#### Wildcard Import
-
-The `*` can be used to import all things from a module.
-
-#### Default Export
-
-The `default` keyword can be used to give better autocomplete hints of exports. This is best used on commonly imported parts of a module.
-
-### Arrow Functions (Lambdas)
-
-Arrow functions are just shortcuts using `=>` for anonymous function calls. This is similar to lambdas in other languages. Lambdas inherit the `this` context from whatever is wrapping it. If, however, a function is fully defined anonymously via the `function` keyword, it has its own `this` context.
-
-Arrow functions are the preferred way because of the `this` inheritance.
-
-### Default Function Arguments
-
-Any argument can be assigned a default value. This makes the argument optional within its function's invocation. This can be used for all arguments. The compiler will infer types from default values. Default values can be set on arguments in any position, not just the trailing arguments.
-
-### Spread Operator
-
-The spread operator, `...` creates a _shallow_ copy of an object. It can also be used in function arguments that operate like Java varargs.
-
-### Object Destructuring
-
-Using the object notation, you can set multiple variables using the contents of another object. See the [demo file](./fundamentals/16-object-destructuring.ts).
-
-### Debugging
-
-You can debug easily in the browser via the `debugger` statement. A breakpoint will be added wherever there is a `debugger` statement. This is done with the compiled Javascript.
-
-Debugging with the Typescript requires using the `--sourceMap` flag on the compiler. This allows you to debug in the browser with the source TS files.
-
-Since any TS program can run in `node`, you can debug when you run it in node with the `--inspect` flag. Using the `--inspect-brk` flag will allow you to attach a different debugger to the process.
-
 ### Unknown Type
 
 The `unknown` type operates much like the `any` type in that it lets you set any value to a variable of that type. The difference is that you can't set an `unknown` to another type (except `any`).
 
-### Type Narrowing
+#### Type Narrowing
 
 You can narrow down a type by wrapping it in a type guard like so:
 
@@ -214,3 +131,88 @@ Intersection types include the properties of all types being intersected. An int
 ```typescript
 type Course = HasId & HasTitle;
 ```
+
+## Optional Chaining
+
+Typescript allows for easier null/undefined safety checks with optional chaining via the `?` operator. For example:
+
+```typescript
+let course = null;
+
+if (course?.title) {
+    console.log(`title: ${course.title}`);
+}
+```
+
+This will only evaluate to `true` when course is defined, not null, and its `title` property is set.
+
+### Null Coalescing
+
+The `??` operator allows you to provide a default value when an evaluation returns null or undefined. It is similar to the `||` operation when setting a default on a `false` result (`var title = false || "default title";`). For example:
+
+```typescript
+let course = null;
+let title = course?.title ?? "No title given";
+
+// should print "No title given"
+console.log(title);
+```
+
+### Non-null Assertion Operator
+
+Since we can set a type to be `null` (either alone of via union types), we can lose some null-safety. The `--strictNullChecks` flag can be passed to the compiler to enforce null safety.
+
+Alternatively, you may know that the value of a variable is not null, so you can override even the strict check by suffixing the variable name with `!` when invoking it. This should be used sparingly. If for some reason the variable is actually null, it will still throw an error at runtime.
+
+```typescript
+let someVar: number | null = null;
+console.log(someVar!.toString());
+```
+
+## Modules
+
+### Export and Import
+
+Each file is considered its own module/namespace. Variables/types/etc can be made available for other modules with the `export` keyword. These items then need to be imported via `import` in other modules.
+
+Imported items can even be re-exported. The names of re-exported items can be changed with the keyword `as`. A good use case for this is to create an import helper for all the features of a module.
+
+### `index.ts`
+
+Whenever a file is named `index.ts`, anything it exports can be referred to via its directory name. I.e. if there is `./some-feature/index.ts`, then things can be import `from "./some-feature` without having to declare a specific file.
+
+### Wildcard Import
+
+The `*` can be used to import all things from a module.
+
+### Default Export
+
+The `default` keyword can be used to give better autocomplete hints of exports. This is best used on commonly imported parts of a module.
+
+## Functions
+
+### Arrow Functions (Lambdas)
+
+Arrow functions are just shortcuts using `=>` for anonymous function calls. This is similar to lambdas in other languages. Lambdas inherit the `this` context from whatever is wrapping it. If, however, a function is fully defined anonymously via the `function` keyword, it has its own `this` context.
+
+Arrow functions are the preferred way because of the `this` inheritance.
+
+### Default Function Arguments
+
+Any argument can be assigned a default value. This makes the argument optional within its function's invocation. This can be used for all arguments. The compiler will infer types from default values. Default values can be set on arguments in any position, not just the trailing arguments.
+
+### Spread Operator
+
+The spread operator, `...` creates a _shallow_ copy of an object. It can also be used in function arguments that operate like Java varargs.
+
+### Object Destructuring
+
+Using the object notation, you can set multiple variables using the contents of another object. See the [demo file](./fundamentals/16-object-destructuring.ts).
+
+## Debugging
+
+You can debug easily in the browser via the `debugger` statement. A breakpoint will be added wherever there is a `debugger` statement. This is done with the compiled Javascript.
+
+Debugging with the Typescript requires using the `--sourceMap` flag on the compiler. This allows you to debug in the browser with the source TS files.
+
+Since any TS program can run in `node`, you can debug when you run it in node with the `--inspect` flag. Using the `--inspect-brk` flag will allow you to attach a different debugger to the process.
