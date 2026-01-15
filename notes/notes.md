@@ -8,3 +8,4 @@ Typescript is a superset of Javascript. All JS programs are valid TS programs, b
 - [Types](types.md)
 - [Functions](functions.md)
 - [Modules](modules.md)
+- [Object-Oriented Programming](oop.md)
