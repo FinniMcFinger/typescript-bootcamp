@@ -18,11 +18,25 @@ You can override configs by passing the same configs at the command line. Comman
 
 #### Compiler Options
 
-These are controlled via the `compilerOptions` object within the config file.
+These are controlled via the `compilerOptions` object within the config file. Any of these can also be used at the command line as options as well.
 
 - `target` sets the version of JS to which the compiler generates compiled JS files
 - `rootDir` sets the base directory for compile sources
 - `outDir` allows you to set a target directory for compiled JS files
+- `module` dictates what module syntax should be used, `CommonJS` seems to be the standard {citation needed}
+- `noLib` when set to `true` will not include any libraries automatically
+- `lib` array allows for explicit declaration of which libraries to include
+- `baseUrl` allows you to set the base URL for module imports, allowing you to declare imports without relative paths
+- `typeRoots` array allows you to set locations for type defintions
+- `types` array allows you to explicitly define types to be included from specific libraries (transitive types included with any entry)
+- `skipLibCheck` when set to `true` the compiler will not check type validities
+- `allowJs` when set to `true` will allow plain JS files to be included when compiling
+- `checkJs` when set to `true` will perform type-safety checks on plain JS files
+- `sourceMaps` when set to `true` will generate source maps for all files when compiling
+- `noEmitOnError` when set to `true` will stop compiling JS files when there is an error
+- `strictNullChecks` when set to `true` will enforce null safety checks
+- `noEmit` when set to `true` will prevent the compiler from emitting _any_ compiled JS files at all, good for testing build
+- `removeComments` when set to `true` will remove comments from compiled files
 
 #### Files
 
@@ -49,6 +63,12 @@ The `exclude` array works only in conjunction with the `include` array. It speci
     ],
 }
 ```
+
+## Libraries
+
+When you want to include a 3rd-party library, it must first be installed. Its types must also be included for features like tab-complete and suggestions.
+
+For example, to install the `express` library, first run `npm install express`. Then to include its types, run `npm install -D @types/express`. The `-D` flag adds the types to the `devDependencies` instead of the regular `dependencies` in `package.json`.
 
 ## Running in a web browser
 

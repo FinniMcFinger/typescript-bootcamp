@@ -1,4 +1,4 @@
-import {PAGE_SIZE, Course} from "./12-module-exports"
+import {PAGE_SIZE, Course} from "12-module-exports"
 
 /*
 This would generate a compile error if `PAGE_SIZE` was not 
@@ -16,8 +16,8 @@ export {
     PAGE_SIZE as MAX_PAGE_SIZE
 };
 
-// importing via index.ts
-import { SomeModel, feature1, feature2 } from "./12-module-index";
+// importing via index.ts, relative path removed thanks to compiler config
+import { SomeModel, feature1, feature2 } from "12-module-index";
 
 let model: SomeModel = {
     id: 1,
