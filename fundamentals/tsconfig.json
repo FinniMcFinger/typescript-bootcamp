@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+        "outDir": "dist"
+    },
+    "include": [
+        "12-module-imports.ts"
+    ]
+}
