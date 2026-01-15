@@ -34,7 +34,7 @@ The compiler will sometimes assign `any` to a variable implicitly. This is commo
 
 ## Union Types
 
-Union types allow you to assign multiple types to a variable, allowing that variable to accept multiple variable types, i.e. `string` and `number`. This is done with the `|` character in the type declaration. See the [demo file](./fundamentals/07-union-types.ts).
+Union types allow you to assign multiple types to a variable, allowing that variable to accept multiple variable types, i.e. `string` and `number`. This is done with the `|` character in the type declaration. See the [demo file](../fundamentals/07-union-types.ts).
 
 Union types allow for a lot of flexibility, but it is also easily misused.
 
@@ -55,7 +55,7 @@ Alias types allow you to declare types inline. This is particularly useful for u
 
 ## Interfaces
 
-Interfaces are the proper way to declare custom types. All functionality of an interface also exists within an alias type. Intefaces are open to extension (alias types are not).
+Interfaces are the proper way to declare custom types. All functionality of an interface also exists within an alias type. Interfaces are open to extension (alias types are not).
 
 - `?` marks a property as optional
 - `readonly` keyword makes a property final
