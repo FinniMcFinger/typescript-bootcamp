@@ -16,4 +16,4 @@ The spread operator, `...` creates a _shallow_ copy of an object. It can also be
 
 ## Object Destructuring
 
-Using the object notation, you can set multiple variables using the contents of another object. See the [demo file](./fundamentals/16-object-destructuring.ts).
+Using the object notation, you can set multiple variables using the contents of another object. See the [demo file](../fundamentals/16-object-destructuring.ts).

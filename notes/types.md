@@ -24,7 +24,7 @@ enum CourseType {
 };
 ```
 
-For better debugging and readability, string values can be passed to override the runtime values of the enum. See the [demo file](./fundamentals/05-enums.ts) for this in action.
+For better debugging and readability, string values can be passed to override the runtime values of the enum. See the [demo file](../fundamentals/05-enums.ts) for this in action.
 
 ## Any Type
 
@@ -47,7 +47,7 @@ Whenever you declare a const with a literal, the type of that variable becomes t
 const count = 10;
 ```
 
-When combined with union types, you can limit assignments on variables. See the [demo file](./fundamentals/08-literal-types.ts).
+When combined with union types, you can limit assignments on variables. See the [demo file](../fundamentals/08-literal-types.ts).
 
 ## Alias Type
 
@@ -64,7 +64,7 @@ Interfaces are the proper way to declare custom types. All functionality of an i
 
 There are times where you may know about the type of a variable than the compiler, i.e. that an element is an HTML input element instead of a more generic HTML element type. The type inferred by the compiler can be forced with the `as` keyword. This emulates polymorphism from an object-oriented language. This is an alternative to casting which can be done with `<CastedType>` before the value declaration.
 
-You cannot set it to a totally different type. Typically you can only assign it to a more-strict type, though sometimes you know that the assertion can work. See the [demo file](./fundamentals/11-type-assertions.ts) for an example of this.
+You cannot set it to a totally different type. Typically you can only assign it to a more-strict type, though sometimes you know that the assertion can work. See the [demo file](../fundamentals/11-type-assertions.ts) for an example of this.
 
 ## Unknown Type
 
@@ -82,13 +82,13 @@ if (typeof unknownValue == "string") {
 }
 ```
 
-The other way to narrow a type is via a [type predicate](./fundamentals/19-type-predicate.ts). This special syntax allows the compiler to be sure that all code within the type guard is in fact safe for the type checked. (This all seems very backwards... just use an OO language.)
+The other way to narrow a type is via a [type predicate](../fundamentals/19-type-predicate.ts). This special syntax allows the compiler to be sure that all code within the type guard is in fact safe for the type checked. (This all seems very backwards... just use an OO language.)
 
 ## Never Type
 
 You cannot assign anything to a variable of type `never`. You cannot do anything with a `never` variable either.
 
-`never` is used by the type inference system when it decides that something is not possible. This is useful for error handling both at compile time and at runtime if something truly unexpected injects a value. See the [demo file](./fundamentals/20-never-type.ts).
+`never` is used by the type inference system when it decides that something is not possible. This is useful for error handling both at compile time and at runtime if something truly unexpected injects a value. See the [demo file](../fundamentals/20-never-type.ts).
 
 ## Intersection Types
 

@@ -4,7 +4,7 @@ Typescript is a superset of Javascript. All JS programs are valid TS programs, b
 
 ## Topics
 
-- [Operations and Language Features](./ops-and-features.md)
-- [Types](./types.md)
-- [Functions](./functions.md)
-- [Modules](./modules.md)
+- [Operations and Language Features](ops-and-features.md)
+- [Types](types.md)
+- [Functions](functions.md)
+- [Modules](modules.md)
