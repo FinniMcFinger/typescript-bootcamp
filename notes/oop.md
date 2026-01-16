@@ -2,7 +2,7 @@
 
 Typescript supports object-oriented programming principles and functionality, but most developers don't do much with it. The promise API is also OO.
 
-## Member Declarations
+## Constructor and Member Declarations
 
 TS allows you to shortcut class variable declarations by providing a scope modifier in a constructor. `public` visibility must be explicitly marked in this case. Any class member can be marked readonly meaning that it cannot be changed after instantiation.
 
@@ -20,6 +20,16 @@ class Thing {
 }
 ```
 
+Typescript does not allow multiple constructor implementations, but you can add default values to constructor parameters.
+
 ## Getters and Setters
 
-Using the `get` and `set` keywords, you can set a method to be declared like a variable. Often this can lead to name collisions, so it is common practice to rename private member variables to be prefixed with an underscore, so `title` would become `_title`. If we have a `get` and `set` named `title` retrieving and modifying the `_title` field, we can interact with it like a variable, i.e. `thing.title = "Some Title";` and `console.log(thing.title);`.
+Using the `get` and `set` keywords, you can set a method to be declared like a variable. Often this can lead to name collisions, so it is common practice to rename private member variables to be prefixed with an underscore, so `title` would become `_title`. If we have a `get` and `set` named `title` retrieving and modifying the `_title` field, we can interact with it like a variable, i.e. `thing.title = "Some Title";` and `console.log(thing.title);`. `get` can also be used with calculation methods to make them seem like member variables and aid in implementation.
+
+## Statics
+
+Typescript supports static members via the `static` keyword. Like most languages, statics are accessed via the class interface, not the instance or `this`. Statics can have any access level or be `readonly`.
+
+## Inheritance
+
+Inheritance works like expected. The `protected` keyword exists as well and works as expected.
