@@ -33,3 +33,21 @@ Typescript supports static members via the `static` keyword. Like most languages
 ## Inheritance
 
 Inheritance works like expected. The `protected` keyword exists as well and works as expected.
+
+### Abstract Classes
+
+Abstracts cannot be instantiated. They serve as a template for child classes. Abstract classes allow you to make the constructor member protected (normally not allowed). You can define abstract method interfaces like you would expect. The `abstract` keyword is applied before `class` or before the method interface name. In order to get compile-time warnings for unimplemented abstract method interfaces, you should mark them as `protected`.
+
+```typescript
+abstract class SomeClass {
+    protected abstract someMethod();
+}
+```
+
+### Interface
+
+Interfaces define a contract that other classes have to follow, similar to abstracts. Interfaces contain no implementation details. All methods within an interface are abstract by nature. Interfaces are implemented instead of extended. This allows a class to implement multiple interfaces. You cannot declare private or protected members in an interface. Getters and setters can satisfy interface requirements. See `title` implementation for `HasTitle` in the [demo file](../oop/01-classes-intro.ts).
+
+## Singleton Design Pattern
+
+The singleton design pattern ensures that there is only ever 1 running instance of the class designed in this manner. This is good for classes that have an expensive instantiation, i.e. database interfaces. The hallmark of a singleton is a private constructor and constructor access via a static method that checks for the existence of an instance.

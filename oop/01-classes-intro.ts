@@ -1,4 +1,6 @@
-class Book {
+import {HasTitle} from "./02-interfaces";
+
+abstract class Book implements HasTitle {
     private static TOTAL_BOOKS = 0;
 
     // private title: string;
@@ -6,12 +8,14 @@ class Book {
     // publishDate: Date;
 
     // Typescript allows shortcut member declarations in constructor
-    constructor(
+    protected constructor(
+        public id: string,
         protected _title: string,
         public subtitle: string,
         public price: number,
         public readonly publishDate = new Date()
     ) {
+        this.id = id;
         this.validatePrice(price);
         this._title = _title;
         this.subtitle = subtitle;
@@ -21,16 +25,14 @@ class Book {
         Book.TOTAL_BOOKS++;
     }
 
-    protected validatePrice(price:number) {
-        console.log("parent class validate being called");
-
-        if (price <= 0) {
-            throw "Price must be greater than 0";
-        }
-    }
+    protected abstract validatePrice(price:number);
 
     static totalBooks() {
         return Book.TOTAL_BOOKS;
+    }
+
+    printId() {
+        return this.id;
     }
 
     // private members are mutable from inside the class only
@@ -55,37 +57,53 @@ class Book {
 
 class LibraryBook extends Book {
     constructor(
-        _title: string,
+        id:string,
+        title: string,
         subtitle: string,
         publishDate = new Date()
     ) {
-        super(_title, subtitle, 0, publishDate);
+        super(id, title, subtitle, 0, publishDate);
     }
 
     protected validatePrice(price:number) {
-        console.log("child class validate being called");
+        console.log("LibraryBook validate being called");
     }
 }
 
-const book1 = new Book(
+class ConsumerBook extends Book {
+    constructor(
+        id:string,
+        title: string,
+        subtitle: string,
+        price: number,
+        publishDate = new Date()
+    ) {
+        super(id, title, subtitle, price, publishDate);
+    }
+
+    protected validatePrice(price:number) {
+        console.log("ConsumerBook validate being called");
+
+        if (price <= 0) {
+            throw "Price must be greater than 0";
+        }
+    }
+}
+
+const book1 = new ConsumerBook(
+    "123-abc",
     "Babby's First Book",
     "A book your kid won't be able to read",
     7.99,
     new Date(2026,0,1)
 );
 
-const book2 = new Book(
+const book2 = new ConsumerBook(
+    "abc123",
     "Fresh Off the Press",
     "The ink is still wet",
     2.99
 );
-
-// this should generate an error when compiling
-// const errorMaker = new Book(
-//     "Compile Errors",
-//     "Always validate your inputs",
-//     0
-// );
 
 let book1AgeDays = Math.round(book1.ageInDays * 10) / 10;
 console.log(`book 1 age in days: ${book1AgeDays}`);
@@ -100,6 +118,7 @@ console.log(Book.totalBooks());
 
 // instantiating child class
 let libraryBook = new LibraryBook(
+    "lib1-bk3",
     "Library Book",
     "A book for free from a government building"
 )
