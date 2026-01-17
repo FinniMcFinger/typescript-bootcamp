@@ -11,3 +11,7 @@ Typescript is a superset of Javascript. All JS programs are valid TS programs, b
 - [Object-Oriented Programming](oop.md)
 - [Generics](generics.md)
 - [Decorators](decorators.md)
+
+## Practical Application
+
+- [REST API](../practical-application-rest-api/README.md)
