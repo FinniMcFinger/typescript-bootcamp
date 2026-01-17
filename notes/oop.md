@@ -2,6 +2,10 @@
 
 Typescript supports object-oriented programming principles and functionality, but most developers don't do much with it. The promise API is also OO.
 
+## Classes
+
+JS does not recognize classes, so when you declare a class in TS, you don't get an actual class when it is compiled. What you get is its constructor function and its prototype.
+
 ## Constructor and Member Declarations
 
 TS allows you to shortcut class variable declarations by providing a scope modifier in a constructor. `public` visibility must be explicitly marked in this case. Any class member can be marked readonly meaning that it cannot be changed after instantiation.

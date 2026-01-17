@@ -25,3 +25,19 @@ export function Log(level: LoggingLevel): MethodDecorator {
         }
     }
 }
+
+export function Perf():MethodDecorator {
+    console.log("applying @Perf decorator");
+
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+        const originalFunctionL:Function = descriptor.value;
+        descriptor.value = function (...args: any[]) {
+            let start = new Date().getTime();
+            console.log(`>> Log: started ${propertyKey} at ${start}`);
+            originalFunctionL.apply(this, args);
+            let end = new Date().getTime();
+            console.log(`>> Log: ended ${propertyKey} at ${end}`);
+            console.log(`>> Log: execution time ${propertyKey} ${end - start}`);
+        };
+    }
+}
