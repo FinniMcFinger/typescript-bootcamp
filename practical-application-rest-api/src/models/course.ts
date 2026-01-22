@@ -22,6 +22,6 @@ export class Course {
     @UpdateDateColumn()
     lastUpdatedAt: Date;
 
-    @OneToMany(() => Lesson, lesson => lesson.id)
+    @OneToMany(() => Lesson, lesson => lesson.course)
     lessons: Lesson[];
 }

@@ -12,7 +12,9 @@
     "start-server-dev": "tsc-watch --onSuccess \"node dist/server.js\"",
     "dev": "npm-run-all clean build start-server-dev",
     "populate-db": "npm-run-all clean build populate-db-script",
-    "populate-db-script": "node dist/models/populate-db.js"
+    "populate-db-script": "node dist/models/populate-db.js",
+    "delete-db": "npm-run-all clean build delete-db-script",
+    "delete-db-script": "node dist/models/delete-db.js"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
@@ -24,7 +26,9 @@
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "pg": "^8.17.2",
     "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
     "winston": "^3.19.0"
   }
 }
