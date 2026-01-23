@@ -15,12 +15,18 @@ import {logger} from "./logger";
 import {AppDataSource} from "./datasource";
 import { getAllCourses } from "./routes/get-all-courses";
 import { defaultErrorHandler } from "./middlewares/default-error-handler";
+import {findCourseByUrl} from "./routes/find-course-by-url";
+import {findLessonsForCourse} from "./routes/find-lessons-for-course";
 
+const cors = require("cors");
 const app = express();
 
 function setUpExpress() {
+    app.use(cors({ origin: true }));
     app.route("/").get(root);
     app.route("/api/courses").get(getAllCourses);
+    app.route("/api/courses/:courseUrl").get(findCourseByUrl);
+    app.route("/api/courses/:courseId/lessons").get(findLessonsForCourse);
     // default error handler should normally be last
     app.use(defaultErrorHandler);
 }

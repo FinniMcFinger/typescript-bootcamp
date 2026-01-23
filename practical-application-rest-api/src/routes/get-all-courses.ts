@@ -7,8 +7,6 @@ export async function getAllCourses(request: Request, response: Response, next: 
     logger.debug("getAllCourses called");
 
     try {
-        throw {error: "This is heavy!"};
-
         const courses = await AppDataSource
             .getRepository(Course)
             .createQueryBuilder("course")

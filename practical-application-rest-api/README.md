@@ -2,6 +2,8 @@
 
 ## Libraries Implemented
 
+All relevant libraries can be installed directly utilizing the `package.json` file. It contains all the libraries listed below. To install all required libraries, run `npm install` from within the `practical-application-rest-api` directory.
+
 - typescript (dev)
 - express
 - typeorm
@@ -12,6 +14,7 @@
 - winston
 - pg
 - reflect-metadata
+- cors
 
 ## Running the Application Locally
 
@@ -36,8 +39,12 @@ DB_PORT=
 DB_USER=
 DB_PASS=
 DB_NAME=
+
+# lesson pagination
+LESSON_PAGE_DEFAULT=0
+LESSON_COUNT_DEFAULT=5
 ```
 
 ### Database
 
-The database can be populated with valid test data using the Node script named `populate-db` via `npm run populate-db`. This will load data from the [preconfigured data file](./src/models/db-data.ts). You can alter this data to your needs or populate with your own data. You _may_ need to truncate database data in the event of inexplicable errors in the data population script.
+The database can be populated with valid test data using the Node script named `populate-db` via `npm run populate-db`. This will load data from the [preconfigured data file](./src/models/db-data.ts). You can alter this data to your needs or populate with your own data. You _may_ need to truncate database data in the event of inexplicable errors in the data population script. There is an additional script named `delete-db` that can be run to clear the database. This does not actually truncate the data, so if errors occur when trying to repopulate, you may need to truncate the tables directly.

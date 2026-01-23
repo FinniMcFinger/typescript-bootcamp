@@ -10,6 +10,8 @@ export class Course {
     @Column()
     seqNum: number;
     @Column()
+    url: string;
+    @Column()
     title: string;
     @Column()
     iconUrl: string;
