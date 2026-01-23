@@ -20,6 +20,8 @@ import {findLessonsForCourse} from "./routes/find-lessons-for-course";
 import {updateCourse} from "./routes/update-course";
 import cors = require("cors");
 import bodyParser = require("body-parser");
+import {createCourse} from "./routes/create-course";
+import {deleteCourse} from "./routes/delete-course";
 
 const app = express();
 
@@ -28,10 +30,12 @@ function setUpExpress() {
     // harvests JSON from request bodies
     app.use(bodyParser.json());
     app.route("/").get(root);
+    app.route("/api/courses").post(createCourse);
     app.route("/api/courses").get(getAllCourses);
     app.route("/api/courses/:courseUrl").get(findCourseByUrl);
     app.route("/api/courses/:courseId/lessons").get(findLessonsForCourse);
     app.route("/api/courses/:courseId").patch(updateCourse);
+    app.route("/api/courses/:courseId").delete(deleteCourse);
     // default error handler should normally be last
     app.use(defaultErrorHandler);
 }
