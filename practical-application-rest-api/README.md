@@ -15,6 +15,7 @@ All relevant libraries can be installed directly utilizing the `package.json` fi
 - pg
 - reflect-metadata
 - cors
+- body-parser
 
 ## Running the Application Locally
 
