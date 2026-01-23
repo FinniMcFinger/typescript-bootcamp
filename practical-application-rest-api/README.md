@@ -6,6 +6,7 @@ All relevant libraries can be installed directly utilizing the `package.json` fi
 
 - typescript (dev)
 - express
+- @types/express (dev)
 - typeorm
 - rimraf (dev)
 - npm-run-all (dev)
@@ -15,6 +16,7 @@ All relevant libraries can be installed directly utilizing the `package.json` fi
 - pg
 - reflect-metadata
 - cors
+- @types/cors
 - body-parser
 
 ## Running the Application Locally
