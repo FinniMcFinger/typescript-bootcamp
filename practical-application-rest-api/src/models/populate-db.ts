@@ -8,11 +8,13 @@ if (result.error) {
 }
 
 import "reflect-metadata"
-import {COURSES} from "./db-data"
+import {COURSES, USERS} from "./db-data"
 import {AppDataSource} from "../datasource";
 import {DeepPartial} from "typeorm";
 import {Course} from "./course";
 import {Lesson} from "./lesson";
+import {User} from "./user";
+import {hashPassword} from "../utils";
 
 async function populateDb() {
     await AppDataSource.initialize();
@@ -20,6 +22,7 @@ async function populateDb() {
     const courses = Object.values(COURSES) as DeepPartial<Course>[];
     const courseRepo = AppDataSource.getRepository(Course);
     const lessonRepo = AppDataSource.getRepository(Lesson);
+    const userRepo = AppDataSource.getRepository(User);
 
     for (let courseData of courses) {
         console.log(`inserting course ${courseData.seqNum}`);
@@ -34,13 +37,32 @@ async function populateDb() {
         }
     }
 
+    const users = Object.values(USERS) as any[];
+
+    for (let userData of users) {
+        console.log(`inserting user ${userData}`);
+        const {email, pictureUrl, isAdmin, passwordSalt, plainTextPassword} = userData;
+        const user = userRepo.create({
+            email,
+            pictureUrl,
+            isAdmin,
+            passwordSalt,
+            passwordHash: await hashPassword(plainTextPassword, passwordSalt)
+        });
+        await AppDataSource.manager.save(user);
+    }
+
     const totalCourses = await courseRepo
         .createQueryBuilder()
         .getCount();
     const totalLessons = await lessonRepo
         .createQueryBuilder()
         .getCount();
-    console.log(`data population complete! ${totalCourses} total courses and ${totalLessons} total lessons`);
+    const totalUsers = await userRepo
+        .createQueryBuilder()
+        .getCount();
+    console.log(`data population complete! ${totalCourses} total courses with ${totalLessons} total lessons and `
+        + `${totalUsers} total users`);
 }
 
 populateDb()

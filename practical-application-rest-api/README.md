@@ -1,6 +1,6 @@
 # REST API Practical Application Project
 
-There are two projects captured within this. The first only creates some basic CRUD operations behind a REST interface. The second (found in the `securing-the-service` branch) deals with securing the REST interface.
+This project represents a basic CRUD REST API for courses and lessons. It is secured with user profiles, hashed passwords, and JWT authorizations on most endpoints.
 
 ## Libraries Implemented
 
@@ -20,12 +20,13 @@ All relevant libraries can be installed directly utilizing the `package.json` fi
 - cors
 - @types/cors
 - body-parser
+- jsonwebtoken
 
 ## Running the Application Locally
 
 Looking at the [package.json](package.json) will show you that there is a script for running the server in dev mode, so you simply have to execute `npm run dev`. This will run the server locally with hot-reload. This hot-reload does not seem to work on `.env` config changes, unfortunately.
 
-[server.ts](src/server.ts) contains the actual server definition. Within it are all the middleware and route definitions. Middlewares act like filters in Java parlance. Ordering is important to middlewares, less so for routes (though you still want your routes between any middleware that you want to run before or after).
+[server.ts](src/server.ts) contains the actual server definition. Within it are all the middleware and route definitions. Middlewares act like filters in Java parlance. Ordering is important to middlewares, less so for routes (though you still want your routes between any middleware that you want to run before or after). Middlewares and routes operate via `NextFunction` calls, allowing one to chain middlewares and routes appropriately. Routes themselves can contain calls to middlewares as well. When calling multiple functions on a route, the order of the middlewares/functions called is important.
 
 Most query inputs are forced into `string` types. This could be handled better, but it's a training course, not production code.
 
@@ -36,6 +37,19 @@ All Typescript files are compiled to the `/dist` directory.
 ## Development Notes
 
 The `dotenv` import and initialization needs to happen _before anything else_, so handle it at the entry point of the application, even before doing other imports. The database connection is not set up to use SSL, so if you attempt to connect to a database where SSL is enforced, it will not work.
+
+User passwords are hashed using SHA-512 algorithm via the Node built-in `crypto` library. Another Node util has been used to wrap the `crypto` function in a Promise to support the async-await pattern.
+
+Login functionality will return a JSON web token (JWT). All subsequent requests will require a JWT authentication token. To create your JWT secret, run the following code within the `node` REPL:
+
+```
+const crypto = require("crypto");
+crypto.randomBytes(32).toString("hex");
+// copy the output and place in .env
+.exit
+```
+
+Authentication-required endpoints can access the logged-in profile via the `"user"` field on the `Request` object.
 
 ### Configs
 
@@ -56,6 +70,9 @@ DB_NAME=
 # lesson pagination
 LESSON_PAGE_DEFAULT=0
 LESSON_COUNT_DEFAULT=5
+
+# JWT
+JWT_SECRET=
 ```
 
 ### Database
@@ -68,10 +85,10 @@ The following service endpoints exist. Note that this is not a comprehensive API
 
 - `GET /` - sanity checking message
 - `POST /api/courses` - create a course
+- `POST /api/users` - create a user profile
+- `POST /api/login` - logs-in a user
 - `GET /api/courses` - get all courses
 - `GET /api/courses/:courseUrl` - get course by its URL
 - `GET /api/courses/:courseId/lessons` - get lessons for a course, includes 0-indexed `page` and 1-indexed `count` query parameters
 - `PATCH /api/courses/:courseId` - update a course
 - `DELETE /api/courses/:courseId` - deletes a course and all its lessons
-
-
