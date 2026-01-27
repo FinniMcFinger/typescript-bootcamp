@@ -26,6 +26,30 @@ class Thing {
 
 Typescript does not allow multiple constructor implementations, but you can add default values to constructor parameters.
 
+### Private Field Declarations
+
+Fields can be marked `private` making them only accessible from within the class, but there is another convention used within Javascript, the `#` character. Prefixing the variable name with `#` marks it as a class member. You must use the `#` when accessing the field.
+
+```typescript
+class Something {
+    // these are functionally equivalent declarations
+    private field1: string;
+    #field2: string;
+    
+    constructor(field1: string, field2: string) {
+        this.field1 = field1;
+        this.#field2 = field2;
+    }
+    
+    get fields() {
+        return {
+            field1: this.field1,
+            field2: this.#field2
+        };
+    }
+}
+```
+
 ## Getters and Setters
 
 Using the `get` and `set` keywords, you can set a method to be declared like a variable. Often this can lead to name collisions, so it is common practice to rename private member variables to be prefixed with an underscore, so `title` would become `_title`. If we have a `get` and `set` named `title` retrieving and modifying the `_title` field, we can interact with it like a variable, i.e. `thing.title = "Some Title";` and `console.log(thing.title);`. `get` can also be used with calculation methods to make them seem like member variables and aid in implementation.
